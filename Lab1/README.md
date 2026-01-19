@@ -1,6 +1,8 @@
 # Lab1
-### Peemmaphat Sripongsai 67070503436
-### Suwiwat Sinsomboon 67070503437
+
+## Group Members
+- Peemmaphat Sripongsai 67070503436
+- Suwiwat Sinsomboon 67070503437
 
 ## Githun source code
 [Lab1](https://github.com/iceswift/cpe223_com-arch_labs/blob/main/Lab1/Lab1_PS1-%20number%20representations.c)
