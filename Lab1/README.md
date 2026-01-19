@@ -1,4 +1,4 @@
-# cpe223_com-arch_labs
+# Lab1
 
 ## Variables
 It store variables like `(eg. minVal, maxVal)` in long long because it can store up to 64 bits if we use normal int and user input 32 bits the program would be not work.
