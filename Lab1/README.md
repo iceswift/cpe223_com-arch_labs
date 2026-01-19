@@ -1,4 +1,9 @@
 # Lab1
+### Peemmaphat Sripongsai 67070503436
+### Suwiwat Sinsomboon 67070503437
+
+## Githun source code
+[Lab1](https://github.com/iceswift/cpe223_com-arch_labs/blob/main/Lab1/Lab1_PS1-%20number%20representations.c)
 
 ## Variables
 It store variables like `(eg. minVal, maxVal)` in long long because it can store up to 64 bits if we use normal int and user input 32 bits the program would be not work.
