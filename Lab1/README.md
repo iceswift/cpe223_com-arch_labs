@@ -2,7 +2,7 @@
 
 ## Group Members
 - Peemmaphat Sripongsai 67070503436
-- Suwiwat Sinsomboon 67070503437
+- Suwiwat Sinsomboon 67070503444
 
 ## Githun source code
 [https://github.com/iceswift/cpe223_com-arch_labs/blob/main/Lab1/Lab1_PS1-%20number%20representations.c](https://github.com/iceswift/cpe223_com-arch_labs/blob/main/Lab1/Lab1_PS1-%20number%20representations.c)
