@@ -1,57 +1,67 @@
-ADR     R0, DATA_ARR
-        MOV     R1, #0
-        MOV     R2, #9
-        BL      QUICKSORT
-        END
+data       DCD     10, 12, 8, 1, 5, 7, 11, 6, 9
 
-QUICKSORT
-        PUSH    {R1-R3, LR}
-        CMP     R1, R2
-        BGE     QS_EXIT
+main       
+           LDR     R0, =data
+           MOV     R1, #0
+           MOV     R2, #8
+           BL      quicksort
+stop       B       stop
 
-        BL      PARTITION
+quicksort  
+           CMP     R1, R2
+           BGE     qs_exit
 
-        PUSH    {R1, R2, R3}
-        SUB     R2, R3, #1
-        BL      QUICKSORT
-        POP     {R1, R2, R3}
+           STMFD   SP!, {R1, R2, LR}
 
-        ADD     R1, R3, #1
-        BL      QUICKSORT
+           BL      partition
 
-QS_EXIT
-        POP     {R1-R3, PC}
+           STMFD   SP!, {R3}
+           SUB     R2, R3, #1
+           BL      quicksort
+           LDMFD   SP!, {R3}
 
-PARTITION
-        PUSH    {R4-R8}
-        LDR     R8, [R0, R2, LSL #2]
-        SUB     R3, R1, #1
-        MOV     R4, R1
+           LDR     R2, [SP, #4]
+           ADD     R1, R3, #1
+           BL      quicksort
 
-PART_LOOP
-        CMP     R4, R2
-        BGE     PART_SWAP
-        LDR     R5, [R0, R4, LSL #2]
-        CMP     R5, R8
-        BGT     PART_NEXT
+           LDMFD   SP!, {R1, R2, PC}
 
-        ADD     R3, R3, #1
-        LDR     R6, [R0, R3, LSL #2]
-        STR     R5, [R0, R3, LSL #2]
-        STR     R6, [R0, R4, LSL #2]
+qs_exit    
+           MOV     PC, LR
 
-PART_NEXT
-        ADD     R4, R4, #1
-        B       PART_LOOP
+partition  
+           ADD     R4, R0, R2, LSL #2
+           LDR     R5, [R4]
 
-PART_SWAP
-        ADD     R3, R3, #1
-        LDR     R6, [R0, R3, LSL #2]
-        STR     R8, [R0, R3, LSL #2]
-        STR     R6, [R0, R2, LSL #2]
+           SUB     R6, R1, #1
+           MOV     R7, R1
 
-        POP     {R4-R8}
-        MOV     PC, LR
+loop_check 
+           CMP     R7, R2
+           BGE     loop_end
 
-DATA_ARR
-        DCD     45, 12, 89, 3, 15, 1, 99, 21, 5, 50
+           ADD     R8, R0, R7, LSL #2
+           LDR     R9, [R8]
+
+           CMP     R9, R5
+           BGT     no_swap
+
+           ADD     R6, R6, #1
+           ADD     R10, R0, R6, LSL #2
+           LDR     R11, [R10]
+           STR     R9, [R10]
+           STR     R11, [R8]
+
+no_swap    
+           ADD     R7, R7, #1
+           B       loop_check
+
+loop_end   
+           ADD     R6, R6, #1
+           ADD     R10, R0, R6, LSL #2
+           LDR     R11, [R10]
+           STR     R5, [R10]
+           STR     R11, [R4]
+
+           MOV     R3, R6
+           MOV     PC, LR
